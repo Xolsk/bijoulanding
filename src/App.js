@@ -15,9 +15,28 @@ import {
 
 export default class App extends React.Component {
 
+  state={lang:""};
+
+  componentDidMount(){
+  
+    if (window.navigator.language==="en"){
+
+        this.setState({lang:"en"});
+        document.getElementById("enSelector").setAttribute("selected",true);
+
+    }
+    else {
+
+      this.setState({lang:"es"});
+      document.getElementById("esSelector").setAttribute("selected",true);
+    }
+
+
+  }
   changeLanguage = (e) => {
 
     window.changeLanguage(e.target.value);
+    this.setState({lang:e.target.value});
     this.forceUpdate();
   }
 
@@ -43,8 +62,8 @@ export default class App extends React.Component {
             </ul>
             <div>
               <select onChange={this.changeLanguage} >
-                <option value="en">EN</option>
-                <option value="es">ES</option>
+                <option id="enSelector" value="en">EN</option>
+                <option id="esSelector" value="es">ES</option>
               </select>
           </div>
           </div>
