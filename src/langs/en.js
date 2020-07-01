@@ -3,6 +3,8 @@ export default {
     about:"About",
     team:"The Team",
     store:"Online Store",
-    homeWelcome: "Hello to Home"
+    homeWelcome: "Hello to Home",
+    contact:"Contact",
+    product:"Product"
 
 };

@@ -2,41 +2,41 @@ import React from 'react';
 import './App.css';
 import About from "./components/About.js";
 import Team from "./components/Team.js";
+import Product from "./components/Product.js";
 import Home from "./components/Home.js";
+import Contact from "./components/Contact.js";
+import Footer from "./components/Footer.js";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  NavLink,
+  Redirect
 } from "react-router-dom";
- import './services/localisationService.js';
+import './services/localisationService.js';
 
 
 
 export default class App extends React.Component {
 
-  state={lang:""};
+  componentDidMount() {
 
-  componentDidMount(){
-  
-    if (window.navigator.language==="en"){
+    if (window.navigator.language === "en") {
 
-        this.setState({lang:"en"});
-        document.getElementById("enSelector").setAttribute("selected",true);
+      document.getElementById("enSelector").setAttribute("selected", true);
 
     }
     else {
 
-      this.setState({lang:"es"});
-      document.getElementById("esSelector").setAttribute("selected",true);
+      document.getElementById("esSelector").setAttribute("selected", true);
     }
 
 
   }
+
   changeLanguage = (e) => {
 
     window.changeLanguage(e.target.value);
-    this.setState({lang:e.target.value});
     this.forceUpdate();
   }
 
@@ -46,26 +46,38 @@ export default class App extends React.Component {
       <div className="App">
         <Router>
           <div className="header" >
-            <ul className="navBar" >
-              <li>
-                <Link to="/">{window.i18nData.home}</Link>
-              </li>
-              <li>
-                <Link to="/about">{window.i18nData.about}</Link>
-              </li>
-              <li>
-                <Link to="/team">{window.i18nData.team}</Link>
-              </li>
-              <li>
-                <a href="http://lebijou.es">{window.i18nData.store}</a>
-              </li>
-            </ul>
-            <div>
+            <div className="headerElement left">
+              <div>LOGO</div>
+            </div>
+
+            <div className="headerElement nav">
+              <ul className="navBar" >
+                <li>
+                  <NavLink activeClassName='is-active' to="/home">{window.i18nData.home}</NavLink>
+                </li>
+                <li>
+                  <NavLink activeClassName='is-active'  to="/about">{window.i18nData.about}</NavLink>
+                </li>
+                <li>
+                  <NavLink  activeClassName='is-active' to="/product">{window.i18nData.product}</NavLink>
+                </li>
+                <li>
+                  <NavLink activeClassName='is-active' to="/team">{window.i18nData.team}</NavLink>
+                </li>
+                <li>
+                  <a href="http://lebijou.es">{window.i18nData.store}</a>
+                </li>
+                <li>
+                  <NavLink  activeClassName='is-active' to="/contact">{window.i18nData.contact}</NavLink>
+                </li>
+              </ul>
+            </div>
+            <div className="headerElement right">
               <select onChange={this.changeLanguage} >
-                <option id="enSelector" value="en">EN</option>
                 <option id="esSelector" value="es">ES</option>
+                <option id="enSelector" value="en">EN</option>
               </select>
-          </div>
+            </div>
           </div>
           <div>
             <Switch>
@@ -75,16 +87,25 @@ export default class App extends React.Component {
               <Route path="/team">
                 <Team />
               </Route>
-              <Route path="/">
+              <Route path="/contact">
+                <Contact />
+              </Route>
+              <Route path="/product">
+                <Product/>
+              </Route>
+              <Route path="/home">
                 <Home />
               </Route>
               <Route path="/">
-                <Home />
+                <Redirect to ="/home"/>
               </Route>
             </Switch>
           </div>
+        
         </Router>
+        <Footer/>
       </div>
+
 
     );
   }

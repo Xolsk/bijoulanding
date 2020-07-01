@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default class Team extends React.Component {
+export default class Product extends React.Component {
 
 
     render(){
   return (
     <div>
     <div className="app">
-      EL EQU
+      {window.i18nData.homeWelcome}
     </div>
     <div className="appSecondPage">
       Segunda Pagina
