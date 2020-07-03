@@ -5,7 +5,7 @@ import Team from "./components/Team.js";
 import Product from "./components/Product.js";
 import Home from "./components/Home.js";
 import Contact from "./components/Contact.js";
-import Footer from "./components/Footer.js";
+import AdminLogin from "./components/adminLogin.js";
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,6 +14,7 @@ import {
   Redirect
 } from "react-router-dom";
 import './services/localisationService.js';
+import logo from './rsc/LeBijouIcon.png';
 
 
 
@@ -47,7 +48,9 @@ export default class App extends React.Component {
         <Router>
           <div className="header" >
             <div className="headerElement left">
-              <div>LOGO</div>
+              <div className="navImageWrapper">
+                <img className="navBarLogo" src= {logo} alt="Le Bijou Logo"></img>
+              </div>
             </div>
 
             <div className="headerElement nav">
@@ -56,10 +59,10 @@ export default class App extends React.Component {
                   <NavLink activeClassName='is-active' to="/home">{window.i18nData.home}</NavLink>
                 </li>
                 <li>
-                  <NavLink activeClassName='is-active'  to="/about">{window.i18nData.about}</NavLink>
+                  <NavLink activeClassName='is-active' to="/about">{window.i18nData.about}</NavLink>
                 </li>
                 <li>
-                  <NavLink  activeClassName='is-active' to="/product">{window.i18nData.product}</NavLink>
+                  <NavLink activeClassName='is-active' to="/product">{window.i18nData.product}</NavLink>
                 </li>
                 <li>
                   <NavLink activeClassName='is-active' to="/team">{window.i18nData.team}</NavLink>
@@ -68,7 +71,7 @@ export default class App extends React.Component {
                   <a href="http://lebijou.es">{window.i18nData.store}</a>
                 </li>
                 <li>
-                  <NavLink  activeClassName='is-active' to="/contact">{window.i18nData.contact}</NavLink>
+                  <NavLink activeClassName='is-active' to="/contact">{window.i18nData.contact}</NavLink>
                 </li>
               </ul>
             </div>
@@ -91,19 +94,59 @@ export default class App extends React.Component {
                 <Contact />
               </Route>
               <Route path="/product">
-                <Product/>
+                <Product />
               </Route>
               <Route path="/home">
                 <Home />
               </Route>
-              <Route path="/">
-                <Redirect to ="/home"/>
+              <Route path="/admin">
+                  <AdminLogin/>
               </Route>
+              <Route path="/">
+                <Redirect to="/home" />
+              </Route>
+
             </Switch>
           </div>
-        
+
+
+          <div className="footer">
+            <div>
+              <ul>
+                <li>
+                  <NavLink to="/home">{window.i18nData.home}</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/about">{window.i18nData.about}</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/team">{window.i18nData.team}</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/product">{window.i18nData.product}</NavLink>
+                </li>
+                <li>
+                  <a href="http://lebijou.es">{window.i18nData.store}</a>
+                </li>
+                <li>
+                  <NavLink to="/contact">{window.i18nData.contact}</NavLink>
+                </li>
+              </ul>
+            </div>
+
+            <div className="footerContact">
+              <p>AyC Creaciones</p>
+              <p>Aqui va la dirección</p>
+              <p>Segunda línea Direccion</p>
+              <a mailto="info@lebijou.es">info@lebijou.es</a>
+              <p>93 345 46 34</p>
+            </div>
+            <div className="footerContact">
+              <p>Instagram</p>
+              <p>Facebook</p>
+            </div>
+          </div>
         </Router>
-        <Footer/>
       </div>
 
 

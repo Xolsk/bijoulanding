@@ -66,18 +66,24 @@
   justify-content:space-around;
 }
 
+.navBarLogo{
+
+  width:100px;
+  height:100px;
+}
+
 ul {
   list-style-type: none;
   
 }
 
-a{
+.header a{
   text-decoration:none;
   padding:0.6em 0.4em;
   margin:0.4em;
 }
 
-a:hover{
+.header a:hover{
 
   background-color:rgb(216, 190, 184);
   animation: navHover 0.5s;
@@ -103,7 +109,7 @@ select:active{
   padding:0.2em;
 }
 
-#root > div > div:nth-child(2) > div > div.app.home > div{
+.coverText{
 
   height:88vh;
   background: rgb(241, 232, 228);
@@ -122,7 +128,7 @@ select:active{
 .appSecondPage{
 
   text-align: center;
-  background-color:black;
+  background-color: rgb(229,226, 221);
   height: 88vh;
   width:100%;
 }
@@ -132,37 +138,45 @@ select:active{
   height:88vh;
 }
 
+#root > div > div:nth-child(2) > div > div.carousel{
+
+  height:88vh;
+}
+
 .slide01{
 
-  background-color:purple;
+  background-color:white;
 }
 
 .slide02{
 
-  background-color: brown;
+  background-color: rgb(249,249, 249)
 }
 
 .slide03{
 
-  background-color:cyan;
+  background-color:rgb(229,226, 221)
 }
 
 .carouselDots{
 
-  background-color: black;
   display:flex;
   justify-content:center;
+  position:relative;
+  top:-3em;
 }
 
 .carouselDots button{
 
   outline:none;
-  width:25px;
-  height:25px;
-  border-radius:50%;
-  padding:10px;
-  margin:5px;
+  width:1em;
+  height:1em;
+  border-radius:100%;
+  padding:1em;
+  margin:1em;
   border:none;
+  background-color: black transparent;
+  box-shadow: 1px 2px 2px 0px rgba(0,0,0,0.75) ;
 }
 
 .appThirdPage{
@@ -179,19 +193,43 @@ select:active{
   justify-content:space-evenly;
   margin-top:4em;
   width:100%;
+  height:100%;
 }
 
 .container{
 
   width:30%;
+  height: 40%;
+  overflow:hidden;
+  transition:height 0.5s;
+
+}
+
+.container:hover{
+
+  height:100%;
 }
 
 .textBox{
 
-  background-color:blue;
   width:100%;
-  height:40%;
+  height:30vh;
   cursor:pointer;
+}
+
+.textBox.left{
+
+  background-color:rgb(216, 190, 184);
+}
+
+.textBox.center{
+
+  background-color:rgb(197, 169, 149)
+}
+
+.textBox.right{
+
+  background-color:rgb(229,226, 221)
 }
 
 .arrowPosition{
@@ -206,21 +244,200 @@ select:active{
   height: 0; 
   border-left: 25px solid transparent;
   border-right: 25px solid transparent;
-  border-top: 25px solid blue;
+
+}
+
+.arrow-down.left{
+
+  border-top: 25px solid rgb(216, 190, 184);
+}
+
+.arrow-down.center{
+
+  border-top: 25px solid rgb(197, 169, 149);
+}
+
+.arrow-down.right{
+
+  border-top: 25px solid rgb(229,226, 221);
 }
 
 .information{
 
-  background-color:yellow;
+  
   margin-top:1em;
   height: 30vh;
 }
 
+.information.right{
+
+  background-color:rgb(241, 232, 228);
+}
+
+.information.center{
+  background-color:rgb(241, 232, 228);
+}
+
+.information.left{
+  background-color:rgb(241, 232, 228);
+}
+
+.app.team{
+
+  display:flex;
+ flex-direction:column;
+  margin-top:3em;
+  height: 120vh !important;
+
+
+}
+
+.memberRow{
+  display:flex;
+  justify-content:space-evenly;
+  flex-wrap:wrap;
+  margin:1em;
+}
+
+.portraitWrapper{
+
+  background-color:black;
+  width:34vh;
+  border-radius:50%;
+  height:34vh;
+  margin:1em;
+}
+
+.formWrapper{
+
+  height:88vh;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+  align-items:center;
+}
 .footer{
 
   background-color:white;
   height:16vh;
+  display:flex;
+  justify-content:space-around;
+  margin:1em 2em;
 }
+
+.footer li{
+
+  padding:0.2em;
+}
+
+.footer li{
+
+  padding:0.2em;
+}
+
+.footerContact > *{
+
+  padding:0.2em;
+}
+.footer a{
+
+  text-decoration:none;
+ 
+}
+
+.contactText{
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  height:18vh;
+}
+
+.contactText a{
+
+  text-decoration:none;
+
+}
+
+.contactForm{
+
+  height:60vh;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  width:90%;
+}
+
+.contactForm >*{
+
+  color:black !important;
+}
+.formData{
+
+  display:flex;
+  flex-direction:column;
+  height:80%;
+  width:40%;
+  justify-content: space-between;
+
+}
+
+.formData input{
+
+  color:black;
+}
+
+.formData input::placeholder{
+
+  font-weight:bold;
+}
+.formData input{
+
+  padding:1em;
+  border: none;
+  border-bottom:2px solid black;
+  
+
+}
+
+.formData input::active{
+
+  border: solid 1px red;
+}
+
+.formSubmit{
+
+  display:flex;
+  flex-direction:column;
+  height:80%;
+  width:40%;
+
+}
+
+.formSubmit textarea{
+
+height:60%;
+border: 2px solid black;
+color:black;
+
+}
+
+.formSubmit button{
+
+margin-top:auto;
+background-color:black;
+width:20%;
+padding:0.4em 0.4em;
+color:white;
+align-self:flex-end;
+border:none;
+}
+
+
+
+
+
 
 @keyframes navHover {
   from {
@@ -231,4 +448,11 @@ select:active{
     background-color:rgb(216, 190, 184);
     color:white;
     ;}
+}
+
+
+.adminLogin{
+
+  display:flex;
+  justify-content:center;
 }
