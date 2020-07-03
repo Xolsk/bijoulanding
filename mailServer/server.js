@@ -16,8 +16,8 @@ app.post('/contact', (req, res) => {
       port: 465,
       secure: true,
       auth: {
-        user: "redpandamusicbcn@gmail.com",
-        pass: "lonewolfandcub"
+        user: "",
+        pass: """
       }
     })
   
