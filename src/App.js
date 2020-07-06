@@ -6,15 +6,18 @@ import Product from "./components/Product.js";
 import Home from "./components/Home.js";
 import Contact from "./components/Contact.js";
 import AdminLogin from "./components/adminLogin.js";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   NavLink,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 import './services/localisationService.js';
-import logo from './rsc/LeBijouIcon.png';
+import logo from './rsc/Logo Long.png';
 
 
 
@@ -46,10 +49,14 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <Router>
+          <ScrollToTop />
           <div className="header" >
             <div className="headerElement left">
               <div className="navImageWrapper">
-                <img className="navBarLogo" src= {logo} alt="Le Bijou Logo"></img>
+                <img className="navBarLogo" src={logo} alt="Le Bijou Logo"></img>
+              </div>
+              <div>
+
               </div>
             </div>
 
@@ -100,7 +107,7 @@ export default class App extends React.Component {
                 <Home />
               </Route>
               <Route path="/admin">
-                  <AdminLogin/>
+                <AdminLogin />
               </Route>
               <Route path="/">
                 <Redirect to="/home" />
@@ -108,50 +115,62 @@ export default class App extends React.Component {
 
             </Switch>
           </div>
-
-
           <div className="footer">
             <div>
-              <ul>
-                <li>
-                  <NavLink to="/home">{window.i18nData.home}</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/about">{window.i18nData.about}</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/team">{window.i18nData.team}</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/product">{window.i18nData.product}</NavLink>
-                </li>
-                <li>
-                  <a href="http://lebijou.es">{window.i18nData.store}</a>
-                </li>
-                <li>
-                  <NavLink to="/contact">{window.i18nData.contact}</NavLink>
-                </li>
-              </ul>
+              <div>
+                <ul>
+                  <li>
+                    <NavLink to="/home">{window.i18nData.home}</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/about">{window.i18nData.about}</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/team">{window.i18nData.team}</NavLink>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <ul>
+                  <li>
+                    <NavLink to="/product">{window.i18nData.product}</NavLink>
+                  </li>
+                  <li>
+                    <a href="http://lebijou.es">{window.i18nData.store}</a>
+                  </li>
+                  <li>
+                    <NavLink to="/contact">{window.i18nData.contact}</NavLink>
+                  </li>
+                </ul>
+              </div>
             </div>
-
             <div className="footerContact">
               <p>AyC Creaciones</p>
-              <p>Aqui va la dirección</p>
-              <p>Segunda línea Direccion</p>
-              <a mailto="info@lebijou.es">info@lebijou.es</a>
-              <p>93 345 46 34</p>
+              <p>Carrer Eduard Maristany 336-350</p>
+              <p>08918  Badalona</p>
             </div>
             <div className="footerContact">
               <p>Instagram</p>
               <p>Facebook</p>
+              <a mailto="info@lebijou.es">info@lebijou.es</a>
             </div>
           </div>
         </Router>
-      </div>
+      </div >
 
 
     );
   }
 }
 
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 

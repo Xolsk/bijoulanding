@@ -5,7 +5,7 @@ export default class Team extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="content">
 
         <div className="app team">
           <div className="memberRow">

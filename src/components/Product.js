@@ -5,7 +5,7 @@ export default class Product extends React.Component {
 
     render(){
   return (
-    <div>
+    <div className="content">
     <div className="app">
       {window.i18nData.homeWelcome}
     </div>

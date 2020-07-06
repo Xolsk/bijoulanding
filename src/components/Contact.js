@@ -35,10 +35,10 @@ export default class Contact extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="content">
         <div className="formWrapper">
           <div className="contactText">
-            <h1>¡Contacta con le Bijou!</h1>
+            <h1>¡Contacta con Le Bijou!</h1>
             <a href="mailto:info@lebijou.es">info@lebijou.es</a>
             <a href="92939393">933949959</a>
           </div>

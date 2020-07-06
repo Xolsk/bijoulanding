@@ -18,6 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+ 
 }
 
 .appImg{
@@ -45,7 +46,7 @@
 .headerElement.left{
 
   text-align:left;
-  padding-left:3em;
+  padding-left:0.5em;
 }
 
 .headerElement.right{
@@ -54,7 +55,14 @@
   padding-right:3em;
 }
 
+.bigLogo{
 
+  max-width:250px;
+  max-height:250px;
+   border: 10px solid black;
+  border-radius: 100%; 
+
+}
 .headerElement.nav{
 
   width:60% !important;
@@ -68,13 +76,33 @@
 
 .navBarLogo{
 
-  width:100px;
   height:100px;
 }
 
-ul {
+.navBar li {
   list-style-type: none;
   
+}
+
+.app.about{
+
+  align-items:center;
+  justify-content:space-around;
+
+
+}
+
+.imageWrapperAbout01{
+
+  width:30%;
+  background-color:red;
+  height:60vh;
+}
+
+.textWrapperAbout01{
+
+  width: 50%;
+  height:60vh;
 }
 
 .header a{
@@ -115,9 +143,15 @@ select:active{
   background: rgb(241, 232, 228);
   width: 100%;
   display: flex;
+  justify-content:center;
+  align-items:center;
   flex-direction:column;
-  font-size:3em;
   font-weight:bold;
+}
+
+.coverText h1{
+
+  margin-top:2em;
 }
 
 #root > div > div:nth-child(2) > div > div.app.home > div h2{
@@ -132,6 +166,15 @@ select:active{
   height: 88vh;
   width:100%;
 }
+
+.appSecondPage.about{
+
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+}
+
+
 
 #root > div > div:nth-child(2) > div > div.carousel > div.horizontalSlider___281Ls.carousel__slider.carousel__slider--horizontal{
 
@@ -169,10 +212,9 @@ select:active{
 .carouselDots button{
 
   outline:none;
-  width:1em;
-  height:1em;
+ 
   border-radius:100%;
-  padding:1em;
+  padding:0.8em;
   margin:1em;
   border:none;
   background-color: black transparent;
@@ -215,6 +257,12 @@ select:active{
   width:100%;
   height:30vh;
   cursor:pointer;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:black;
+  font-weight:300;
+  font-size:1.5em;
 }
 
 .textBox.left{
@@ -236,7 +284,7 @@ select:active{
 
   display:flex;
   justify-content:center;
-  margin:0.2em;
+  margin:0 0.2em 0.2em 0.2em;
 }
 
 .arrow-down {
@@ -264,9 +312,17 @@ select:active{
 
 .information{
 
-  
+  display:flex;
+  justify-content:center;
+  align-items:center;
   margin-top:1em;
   height: 30vh;
+}
+
+.information p{
+
+  color:black;
+  width:90%;
 }
 
 .information.right{
@@ -323,6 +379,7 @@ select:active{
   display:flex;
   justify-content:space-around;
   margin:1em 2em;
+  font-size:0.9em;
 }
 
 .footer li{
@@ -330,19 +387,22 @@ select:active{
   padding:0.2em;
 }
 
-.footer li{
+
+
+.footer > *{
 
   padding:0.2em;
-}
 
-.footerContact > *{
-
-  padding:0.2em;
 }
 .footer a{
 
   text-decoration:none;
  
+}
+
+.footerContact > *{
+
+  padding:0.2em;
 }
 
 .contactText{

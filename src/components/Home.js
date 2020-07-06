@@ -1,6 +1,6 @@
 import React from 'react';
 import '../services/localisationService.js';
-import landing from "../rsc/landing.jpg";
+import bigLogo from "../rsc/Logo Big.png";
 import NewsCarousel from "../components/newsCarousel";
 
 export default class Home extends React.Component {
@@ -8,11 +8,14 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <div >
+      <div className="content" >
         <div className="app home">
           <div className="coverText">
-            <h2> LE BIJOU </h2>
-            <p>Lorem Ipsum</p>
+            <img className="bigLogo" src={bigLogo} />
+            <h1>Le Bijou</h1>
+            <h2>
+              Tu mayorista de bisutería y complementos desde hace más de 10 años.
+          </h2>
           </div>
         </div>
         <NewsCarousel />
@@ -21,36 +24,42 @@ export default class Home extends React.Component {
             <div className="container" >
 
               <div className="textBox left">
-                container01
+                Agilidad
               </div>
               <div className="arrowPosition">
                 <div className="arrow-down left"></div>
               </div>
               <div className="information left">
-                INFOR
+                <p>
+                  pharetra erat vel, pulvinar sapien. Cras tincidunt felis purus, eget scelerisque lectus interdum sit amet.
+                </p>
               </div>
             </div>
             <div className="container" >
 
               <div className="textBox center">
-                container01
+                Compromiso
               </div>
               <div className="arrowPosition">
                 <div className="arrow-down center"></div>
               </div>
               <div className="information center">
-                INFOR
+                <p>
+                  pharetra erat vel, pulvinar sapien. Cras tincidunt felis purus, eget scelerisque lectus interdum sit amet.
+                </p>
               </div>
             </div>
             <div className="container" >
               <div className="textBox right">
-                container01
+                Personalidad
               </div>
               <div className="arrowPosition">
                 <div className="arrow-down right"></div>
               </div>
               <div className="information right">
-                INFOR
+                <p>
+                  pharetra erat vel, pulvinar sapien. Cras tincidunt felis purus, eget scelerisque lectus interdum sit amet.
+                </p>
               </div>
             </div>
 
