@@ -8,8 +8,8 @@ const contactEmail = (req, res) => {
       port: 465,
       secure: true,
       auth: {
-        user: "redpandamusicbcn@gmail.com",
-        pass: "lonewolfandcub"
+        user: "",
+        pass: """
       }
     })
   
