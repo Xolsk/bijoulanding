@@ -6,6 +6,8 @@ export default class Contact extends React.Component {
 
   handleSubmit = (e) => {
 
+    e.preventDefault();
+
     const name = e.target.name.value;
     const lastName = e.target.lastName.value;
     const email = e.target.email.value;
@@ -29,7 +31,7 @@ export default class Contact extends React.Component {
 
     fetch("http://localhost:4000/contact", requestOptions)
       .then(response => response.text())
-      .then(result => console.log(result))
+      .then(result => alert(result))
       .catch(error => console.log('error', error));
 
   }

@@ -1,102 +1,72 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation
-} from "react-router-dom";
-import AdminPage from "./AdminPage.js";
+import { Redirect } from "react-router-dom";
 
+export default class AdminSection extends React.Component {
 
-export default function AuthExample() {
-  return (
-    <Router>
-      <div className="app adminLogin">
-        <AuthButton />
-            <Link to="/protected">Protected Page</Link>
-        <Switch>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <PrivateRoute path="/protected">
-            <AdminPage />
-          </PrivateRoute>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
+  state = { redirect: false };
 
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    fakeAuth.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
-  },
-  signout(cb) {
-    fakeAuth.isAuthenticated = false;
-    setTimeout(cb, 100);
+  login = (e) => {
+
+    e.preventDefault();
+    const password = e.target.password.value;
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("password", password);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:4000/authenticate", requestOptions)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        else {
+          throw new Error("Password incorrecto");
+        }
+      })
+      .then((response) => {
+        localStorage.setItem("token", JSON.stringify(response.token));
+        this.setState({ redirect: true });
+      })
+      .catch((error) => {
+        alert(error);
+      });
+
   }
-};
 
-function AuthButton() {
-  let history = useHistory();
+  resetPassword= ()=>{
 
-  return fakeAuth.isAuthenticated ? (
-    <p>
-      Welcome!{" "}
-      <button
-        onClick={() => {
-          fakeAuth.signout(() => history.push("/"));
-        }}
-      >
-        Sign out
-      </button>
-    </p>
-  ) : (
-    <p>You are not logged in.</p>
-  );
-}
+    alert("Reset");
 
-function PrivateRoute({ children, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        fakeAuth.isAuthenticated ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location }
-            }}
-          />
-        )
-      }
-    />
-  );
-}
+    
+  }
 
+  render() {
+    const { redirect } = this.state;
 
-function LoginPage() {
-  let history = useHistory();
-  let location = useLocation();
+    if (redirect) {
+      return <Redirect to='/dashboard' />;
+    }
+    else {
 
-  let { from } = location.state || { from: { pathname: "/" } };
-  let login = () => {
-    fakeAuth.authenticate(() => {
-      history.replace(from);
-    });
-  };
-
-  return (
-    <div>
-      <p>You must log in to view the page at {from.pathname}</p>
-      <button onClick={login}>Log in</button>
-    </div>
-  );
+      return (
+        <div className="app adminLogin">
+          <div className="contentAdminWrapper">
+            <form onSubmit={this.login} className="loginForm">
+              <label>Password:</label>
+              <input type="password" name="password"></input>
+            </form>
+            <button onClick={this.resetPassword} className="formSubmit button admin">Password olvidado? Click aquí</button>
+          </div>
+        </div>
+      )
+    }
+  }
 }

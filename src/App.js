@@ -5,9 +5,12 @@ import Team from "./components/Team.js";
 import Product from "./components/Product.js";
 import Home from "./components/Home.js";
 import Contact from "./components/Contact.js";
-import AdminLogin from "./components/adminLogin.js";
+import AdminLogin from "./components/AdminLogin.js";
+import AdminPage from "./components/AdminPage.js";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import PublicRoute from "./components/PublicRoute";
+import PrivateRoute from "./components/PrivateRoute";
 
 import {
   BrowserRouter as Router,
@@ -91,69 +94,56 @@ export default class App extends React.Component {
           </div>
           <div>
             <Switch>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/team">
-                <Team />
-              </Route>
-              <Route path="/contact">
-                <Contact />
-              </Route>
-              <Route path="/product">
-                <Product />
-              </Route>
-              <Route path="/home">
-                <Home />
-              </Route>
-              <Route path="/admin">
-                <AdminLogin />
-              </Route>
+              <PublicRoute restricted={false} component={About} path="/about"/>
+              <PublicRoute restricted={false} component={Team} path="/team"/>
+              <PublicRoute restricted={false} component={Contact} path="/contact"/>
+              <PublicRoute restricted={false} component={Product} path="/product"/>
+              <PublicRoute restricted={false} component={Home} path="/home"/>
+              <PublicRoute restricted={true} component={AdminLogin} path="/admin"/>
+              <PrivateRoute component={AdminPage} path="/dashboard"/>
               <Route path="/">
                 <Redirect to="/home" />
               </Route>
-
             </Switch>
           </div>
           <div className="footer">
             <div>
-              <div>
-                <ul>
-                  <li>
-                    <NavLink to="/home">{window.i18nData.home}</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/about">{window.i18nData.about}</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/team">{window.i18nData.team}</NavLink>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <ul>
-                  <li>
-                    <NavLink to="/product">{window.i18nData.product}</NavLink>
-                  </li>
-                  <li>
-                    <a href="http://lebijou.es">{window.i18nData.store}</a>
-                  </li>
-                  <li>
-                    <NavLink to="/contact">{window.i18nData.contact}</NavLink>
-                  </li>
-                </ul>
-              </div>
+              <ul>
+                <li>
+                  <NavLink to="/home">{window.i18nData.home}</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/about">{window.i18nData.about}</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/team">{window.i18nData.team}</NavLink>
+                </li>
+              </ul>
             </div>
-            <div className="footerContact">
-              <p>AyC Creaciones</p>
-              <p>Carrer Eduard Maristany 336-350</p>
-              <p>08918  Badalona</p>
+            <div>
+              <ul>
+                <li>
+                  <NavLink to="/product">{window.i18nData.product}</NavLink>
+                </li>
+                <li>
+                  <a href="http://lebijou.es">{window.i18nData.store}</a>
+                </li>
+                <li>
+                  <NavLink to="/contact">{window.i18nData.contact}</NavLink>
+                </li>
+              </ul>
             </div>
-            <div className="footerContact">
-              <p>Instagram</p>
-              <p>Facebook</p>
-              <a mailto="info@lebijou.es">info@lebijou.es</a>
-            </div>
+      
+          <div className="footerContact">
+            <p>AyC Creaciones</p>
+            <p>Carrer Eduard Maristany 336-350</p>
+            <p>08918  Badalona</p>
+          </div>
+          <div className="footerContact">
+            <p>Instagram</p>
+            <p>Facebook</p>
+            <a mailto="info@lebijou.es">info@lebijou.es</a>
+          </div>
           </div>
         </Router>
       </div >

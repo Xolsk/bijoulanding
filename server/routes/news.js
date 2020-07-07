@@ -4,15 +4,13 @@ const express = require('express'),
 const protectedRoute = require("../security/protected.js");
 
 
-router.get('/all',protectedRoute, controller.find);
+router.post('/create',protectedRoute, controller.create); 
 
-router.post('/create', controller.create); 
+router.get('/read',protectedRoute,controller.read);
 
-router.post('/remove', controller.remove); 
+// router.post('/update', controller.update); 
 
-router.post('/update', controller.update); 
-
-router.post('/delete',controller.delete);
+router.post('/delete',protectedRoute, controller.delete); 
 
 module.exports = router;
 

@@ -22,12 +22,12 @@ const authenticate = async (req, res) => {
       const token = jwt.sign(payload, app.get('key'), {
         expiresIn: 1440
       });
-      res.json({
+      res.status(200).json({
         mensaje: 'Correct authentication',
         token: token
       });
     } else {
-      res.json({ mensaje: "Wrong password" })
+      res.status(401).json({ mensaje: "Wrong password" })
     }
   }
 

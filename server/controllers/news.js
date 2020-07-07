@@ -5,19 +5,48 @@ class NewsController {
 
     async create(req, res) {
 
-    }
-    async remove(req, res) {
+        try {
+            let { id, title, subtitle, image, text } = req.body;
 
-    }
+            const newNew = await admin.create({ id, title, subtitle, image, text });
 
-    async update(req, res) {
-
+            res.status(200).send({ message: "News correctly added", newNew });
+        }
+        catch (error) {
+            res.status(500).send(error);
+        }
     }
 
     async delete(req, res) {
 
+        try {
+
+            let newsToDelete = req.body.id
+
+            const deletedNew = await admin.deleteOne({ id: newsToDelete });
+
+            res.status(200).send({ message: "News correctly deleted", deletedNew });
+        }
+
+        catch (error) {
+
+            res.status(500).send(error);
+
+        }
     }
-    async find(req, res) {
+
+    async read(req, res) {
+
+        try{
+
+        const allNews=await admin.find({});
+
+        res.status(200).send(allNews);
+        }
+        catch(error){
+
+            res.status(500).send(error);
+        }
 
     }
 

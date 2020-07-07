@@ -14,14 +14,14 @@ protectedRoute.use((req, res, next) => {
     if (token) {
         jwt.verify(token, app.get('key'), (err, decoded) => {
             if (err) {
-                return res.json({ mensaje: 'Invalid Token' });
+                return res.status(200).json({ mensaje: 'Invalid Token' });
             } else {
                 req.decoded = decoded;
                 next();
             }
         });
     } else {
-        res.send({
+        res.status(401).send({
             mensaje: 'Token not provided'
         });
     }

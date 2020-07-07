@@ -15,15 +15,17 @@ mongoose.connect('mongodb://127.0.0.1/leBijouWeb', () => {
 
 app.use(cors());
 
-const contactEmail = require("./mail/mailServer.js");
+const mailServer = require("./mail/mailServer.js");
 const password = require("./routes/password.js");
 const news = require ("./routes/news.js");
 const authenticate = require ("./security/authenticate.js");
+const protected = require ("./security/protected");
 
-app.use('/contact',contactEmail);
+app.use('/contact',mailServer);
 app.use("/password",password);
 app.use("/news",news);
 app.use("/authenticate",authenticate);
+app.use("/verifytoken", protected);
 
 
 const port = 4000

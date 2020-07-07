@@ -5,4 +5,6 @@ const protectedRoute = require ("../security/protected.js");
 
 router.post("/changepassword", protectedRoute, controller.changePassword);
 
+ router.post ("/passwordreset", controller.passwordReset);
+
 module.exports=router;
