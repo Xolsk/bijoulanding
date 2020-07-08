@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import PublicRoute from "./components/PublicRoute";
 import PrivateRoute from "./components/PrivateRoute";
+import ResetPassword from "./components/ResetPassword";
 
 import {
   BrowserRouter as Router,
@@ -94,16 +95,18 @@ export default class App extends React.Component {
           </div>
           <div>
             <Switch>
-              <PublicRoute restricted={false} component={About} path="/about"/>
-              <PublicRoute restricted={false} component={Team} path="/team"/>
-              <PublicRoute restricted={false} component={Contact} path="/contact"/>
-              <PublicRoute restricted={false} component={Product} path="/product"/>
-              <PublicRoute restricted={false} component={Home} path="/home"/>
-              <PublicRoute restricted={true} component={AdminLogin} path="/admin"/>
-              <PrivateRoute component={AdminPage} path="/dashboard"/>
+              <PublicRoute restricted={false} component={About} path="/about" />
+              <PublicRoute restricted={false} component={Team} path="/team" />
+              <PublicRoute restricted={false} component={Contact} path="/contact" />
+              <PublicRoute restricted={false} component={Product} path="/product" />
+              <PublicRoute restricted={false} component={Home} path="/home" />
+              <PublicRoute restricted={true} component={AdminLogin} path="/admin" />
+              <PrivateRoute component={AdminPage} path="/dashboard" />
+              <Route path="/resetpassword/:token" children={<ResetPassword/>}/>
               <Route path="/">
                 <Redirect to="/home" />
               </Route>
+
             </Switch>
           </div>
           <div className="footer">
@@ -133,17 +136,17 @@ export default class App extends React.Component {
                 </li>
               </ul>
             </div>
-      
-          <div className="footerContact">
-            <p>AyC Creaciones</p>
-            <p>Carrer Eduard Maristany 336-350</p>
-            <p>08918  Badalona</p>
-          </div>
-          <div className="footerContact">
-            <p>Instagram</p>
-            <p>Facebook</p>
-            <a mailto="info@lebijou.es">info@lebijou.es</a>
-          </div>
+
+            <div className="footerContact">
+              <p>AyC Creaciones</p>
+              <p>Carrer Eduard Maristany 336-350</p>
+              <p>08918  Badalona</p>
+            </div>
+            <div className="footerContact">
+              <p>Instagram</p>
+              <p>Facebook</p>
+              <a mailto="info@lebijou.es">info@lebijou.es</a>
+            </div>
           </div>
         </Router>
       </div >

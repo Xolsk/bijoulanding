@@ -1,11 +1,13 @@
 const admin = require("../models/passwordSchema.js");
-var bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const sendResetPasswordEmail = require("../mail/resetPassword.js");
 const saltRounds = 10;
+const jwt = require("jsonwebtoken");
+const express = require('express');
+const app = express();
 
 
 class passwordController {
-
 
     async changePassword(req, res) {
 
@@ -25,13 +27,20 @@ class passwordController {
 
     async passwordReset(req, res) {
 
-        
-        sendResetPasswordEmail();
-
         try {
 
-            
-            res.status(200).send("OK")
+            const currentPasswordHash= await admin.findOne({id:"password"});
+
+            app.set("personalkey",currentPasswordHash.password);
+            const payload = {
+                check: true
+              };
+            const token = jwt.sign(payload, app.get('personalkey'), {
+                expiresIn: 1440
+              });
+
+            sendResetPasswordEmail(token);
+            res.status(200).send(token);
 
         }
 
@@ -41,8 +50,6 @@ class passwordController {
         }
 
     }
-
-
 }
 
 
