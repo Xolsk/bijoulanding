@@ -63,7 +63,7 @@ export default class AdminSection extends React.Component {
               <label>Password:</label>
               <input type="password" name="password"></input>
             </form>
-            <button onClick={this.resetPassword} className="formSubmit button admin">Password olvidado? Click aquí</button>
+            <button onClick={this.resetPassword} className="formSubmit formButton admin">Password olvidado? Click aquí</button>
           </div>
         </div>
       )

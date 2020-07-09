@@ -53,7 +53,7 @@ export default class Contact extends React.Component {
             </div>
             <div className="formSubmit">
               <textarea name="text" placeholder="Escriba aquí su mensaje" />
-              <button type="submit">Envía</button>
+              <button className="formButton" type="submit">Envía</button>
             </div>
           </form>
 
