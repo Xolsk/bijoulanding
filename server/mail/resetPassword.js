@@ -1,10 +1,11 @@
 const nodemailer = require('nodemailer');
 const config = require("../config/emailConfig.js")
+const Email = require('email-templates');
 
 const resetPasswordEmail = (token) => {
 
 
-  const resetLink = `localhost:3000/resetpassword:${token}`
+  const resetLink = `localhost:3000/resetpassword/${token}`
 
     const smtpTrans = nodemailer.createTransport({
       host: 'smtp.gmail.com',
@@ -15,25 +16,25 @@ const resetPasswordEmail = (token) => {
         pass: config.password
       }
     })
-  
-    // Specify what the email will look like
-    const mailOpts = {
-      from: 'Your sender info here', // This is ignored by Gmail
-      to: "xolsco@gmail.com",
-      subject: 'Password reset solicitado para la web de Le Bijou',
-      text: `Alguien ha solicitado un cambio de password para la web de Le Bijou. Si no es así ignora este email. En caso contrario, dale click al sigiente link \n ${resetLink}`
-    }
+
+    const email = new Email({
+      transport: smtpTrans,
+      send: true,
+      preview: false,
+      
+    });
   
     // Attempt to send the email
-    smtpTrans.sendMail(mailOpts, (error, response) => {
-      if (error) {
-        console.log(error)
-        res.send('contact-failure') // Show a page indicating failure
-      }
-      else {
-        res.send('contact-success') // Show a page indicating success
-      }
-    })
+    email.send({
+      template: 'resetPassword',
+      message: {
+        from: 'Le Bijou Password Reset',
+        to: 'xolsco@gmail.com',
+      },
+      locals: {
+        link: resetLink
+      },
+    }).then(() => console.log('email has been sent!'));
   }
 
   module.exports = resetPasswordEmail;

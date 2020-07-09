@@ -32,8 +32,9 @@ export default class AdminSection extends React.Component {
         }
       })
       .then((response) => {
-        localStorage.setItem("token", JSON.stringify(response.token));
-        this.setState({ redirect: true });
+        
+        localStorage.setItem("token", response.token);
+        // this.setState({ redirect: true });
       })
       .catch((error) => {
         alert(error);
@@ -41,11 +42,31 @@ export default class AdminSection extends React.Component {
 
   }
 
-  resetPassword= ()=>{
+  resetPassword = () => {
 
-    alert("Reset");
+    var requestOptions = {
+      method: 'POST',
+      redirect: 'follow'
+    };
 
-    
+    fetch("http://localhost:4000/password/passwordreset", requestOptions)
+      .then((response) => {
+        if (response.ok) {
+          return response.text();
+        }
+        else {
+          throw new Error("Credenciales inválidas");
+        }
+      })
+      .then((response) => {
+        alert("Se ha mandado un email al correo de Le Bijou.")
+      })
+      .catch((error) => {
+        alert(error);
+
+      });
+
+
   }
 
   render() {

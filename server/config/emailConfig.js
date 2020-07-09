@@ -1,6 +1,6 @@
 module.exports = {
 
-    user:"string",
+    user:"redpandamusicbcn@gmail.com",
 
-    password:"string"
+    password:"lonewolfandcub"
 }

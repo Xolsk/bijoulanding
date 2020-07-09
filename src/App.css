@@ -505,6 +505,12 @@ button{
   cursor:pointer;
 }
 
+#root > div > div:nth-child(2) > div > div > button
+{
+  align-self:center !important;
+  width:8em !important;
+}
+
 
 
 @keyframes navHover {

@@ -54,7 +54,7 @@ export default function ResetPassword() {
     }
 
     return tokenStatus ? (
-                <ResetPasswordForm/>
+                <ResetPasswordForm token={token}/>
     ) : (
             <Redirect app="/home" />
         );
