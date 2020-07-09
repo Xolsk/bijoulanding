@@ -20,7 +20,7 @@ export default class AdminPage extends React.Component {
     };
 
     fetch("http://localhost:4000/verifytoken", requestOptions)
-      .then((response) => {
+      .then((response) => { 
         if (response.ok) {
           return response.json();
         }

@@ -2,17 +2,13 @@ const jwt = require('jsonwebtoken');
 const express = require('express');
 const app = express();
 const config = require('../config/jsonConfig.js');
-const admin = require("../models/passwordSchema.js");
+
 
 app.set('key', config.key);
 
 const protectedRoute = express.Router();
 
-protectedRoute.use(async (req, res, next) => {
-
-    const currentPasswordHash = await admin.findOne({ id: "password" });
-
-    app.set("personalkey", currentPasswordHash.password);
+protectedRoute.use( (req, res) => {
 
 
     const token = req.headers['access-token'];
@@ -20,17 +16,10 @@ protectedRoute.use(async (req, res, next) => {
     if (token) {
         jwt.verify(token, app.get('key'), (err, decoded) => {
             if (err) {
-                jwt.verify(token, app.get('personalkey'), (err, decoded) => {
-                    if (err) {
-                        res.status(401).send({mensaje:"Invalid Token"})
-                    } else {
-                        req.decoded = decoded;
-                        next();
-                    }
-                });
+                return res.status(401).json({ mensaje: 'Invalid Token' });
             } else {
                 req.decoded = decoded;
-                next();
+                res.status(200).send({mensaje:"Access Granted"});
             }
         });
     } else {

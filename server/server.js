@@ -19,14 +19,14 @@ const mailServer = require("./mail/mailServer.js");
 const password = require("./routes/password.js");
 const news = require ("./routes/news.js");
 const authenticate = require ("./security/authenticate.js");
-const protected = require ("./security/protected");
+const verifyToken = require ("./security/verifyToken");
 const protectedEmailReset = require ("./security/protectedEmailReset")
 
 app.use('/contact',mailServer);
 app.use("/password",password);
 app.use("/news",news);
 app.use("/authenticate",authenticate);
-app.use("/verifytoken", protected);
+app.use("/verifytoken", verifyToken);
 app.use("/verifyemailtoken", protectedEmailReset)
 
 const port = 4000

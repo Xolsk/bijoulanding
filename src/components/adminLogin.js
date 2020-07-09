@@ -34,7 +34,7 @@ export default class AdminSection extends React.Component {
       .then((response) => {
         
         localStorage.setItem("token", response.token);
-        // this.setState({ redirect: true });
+         this.setState({ redirect: true });
       })
       .catch((error) => {
         alert(error);

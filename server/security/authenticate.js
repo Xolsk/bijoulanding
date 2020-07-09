@@ -13,7 +13,6 @@ const authenticate = async (req, res) => {
 
     const activePassword = await admin.findOne({id:"password"});
     const match = await bcrypt.compare(receivedPassword, activePassword.password);
-  
 
     if (match) {
       const payload = {

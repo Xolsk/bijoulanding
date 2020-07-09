@@ -4,14 +4,19 @@ import React from 'react';
 export default class ResetPasswordForm extends React.Component {
 
 
-  resetPassword = () => {
+  resetPassword = (e) => {
+
+
+    e.preventDefault();
+
+    const newPassword=e.target.password.value;
 
     var myHeaders = new Headers();
     myHeaders.append("access-token", this.props.token);
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
     var urlencoded = new URLSearchParams();
-    urlencoded.append("newPassword", "test2");
+    urlencoded.append("newPassword", newPassword);
 
     var requestOptions = {
       method: 'POST',
@@ -22,10 +27,8 @@ export default class ResetPasswordForm extends React.Component {
 
     fetch("http://localhost:4000/password/changepassword", requestOptions)
       .then(response => response.text())
-      .then(result => console.log(result))
+      .then(result => alert(result))
       .catch(error => console.log('error', error));
-
-
 
   }
 
@@ -35,10 +38,10 @@ export default class ResetPasswordForm extends React.Component {
     return (
       <div className="app adminLogin">
         <div className="contentAdminWrapper">
-          <form onSubmit={this.login} className="loginForm">
+          <form onSubmit={this.resetPassword} className="loginForm">
             <label>New Password:</label>
             <input type="password" name="password"></input>
-            <button onClick={this.resetPassword} className="formSubmit formButton admin">Envíar</button>
+            <button type="submit" className="formSubmit formButton admin">Envíar</button>
           </form>
 
         </div>
