@@ -1,14 +1,14 @@
 const express = require('express'),
     router = express.Router(),
     controller = require('../controllers/news.js');
-const protectedRoute = require("../security/protected.js");
+const protectedRoute = require("../security/protectedRoute.js");
 
 
 router.post('/create',protectedRoute, controller.create); 
 
-router.get('/read',protectedRoute,controller.read);
+router.get('/read',controller.read);
 
-// router.post('/update', controller.update); 
+ router.post('/savenew', controller.savenew); 
 
 router.post('/delete',protectedRoute, controller.delete); 
 

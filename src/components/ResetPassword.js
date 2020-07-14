@@ -26,7 +26,7 @@ export default function ResetPassword() {
         setTokenStatus(false);
 
 
-        fetch("http://localhost:4000/verifyemailtoken", requestOptions)
+        fetch("http://localhost:4000/verifytoken", requestOptions)
             .then(response => response.text())
             .then(result => {
                 if (result === "Access Granted") {

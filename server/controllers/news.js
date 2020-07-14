@@ -3,6 +3,40 @@ const admin = require("../models/newsSchema.js");
 
 class NewsController {
 
+    async savenew(req, res) {
+
+        const newData = JSON.parse(req.body.newNews);
+        let newNews = [];
+
+        try {
+
+            for (let i = 0; i < newData.length; i++) {
+
+                let updatedData = {
+
+                    id: newData[i].id,
+                    title: newData[i].title,
+                    subtitle: newData[i].subtitle,
+                    text: newData[i].text,
+                    image: newData[i].image,
+
+                }
+                let currentIdFilter = { id: newData[i].id }
+                let updatedNew = await admin.findOneAndUpdate(currentIdFilter, updatedData, { new: true });
+
+                newNews.push(updatedNew);
+
+            }
+            res.status(200).send(newNews);
+        }
+
+        catch (error) {
+            console.log(error)
+            res.status(500).send(error)
+        }
+
+    }
+
     async create(req, res) {
 
         try {
@@ -37,13 +71,13 @@ class NewsController {
 
     async read(req, res) {
 
-        try{
+        try {
 
-        const allNews=await admin.find({});
+            const allNews = await admin.find({});
 
-        res.status(200).send(allNews);
+            res.status(200).send(allNews);
         }
-        catch(error){
+        catch (error) {
 
             res.status(500).send(error);
         }

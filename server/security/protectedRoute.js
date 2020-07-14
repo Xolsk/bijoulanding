@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const express = require('express');
 const app = express();
-const config = require('../config/jsonConfig.js');
+const config = require('../config/jwtConfig.js');
 const admin = require("../models/passwordSchema.js");
 
 app.set('key', config.key);

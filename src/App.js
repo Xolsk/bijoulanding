@@ -12,7 +12,6 @@ import { useLocation } from "react-router-dom";
 import PublicRoute from "./components/PublicRoute";
 import PrivateRoute from "./components/PrivateRoute";
 import ResetPassword from "./components/ResetPassword";
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -57,7 +56,9 @@ export default class App extends React.Component {
           <div className="header" >
             <div className="headerElement left">
               <div className="navImageWrapper">
+                <NavLink to="/home">
                 <img className="navBarLogo" src={logo} alt="Le Bijou Logo"></img>
+                </NavLink>
               </div>
               <div>
 
@@ -66,8 +67,8 @@ export default class App extends React.Component {
 
             <div className="headerElement nav">
               <ul className="navBar" >
-                <li>
-                  <NavLink activeClassName='is-active' to="/home">{window.i18nData.home}</NavLink>
+                <li >
+                  <NavLink  activeClassName='is-active' to="/home">{window.i18nData.home}</NavLink>
                 </li>
                 <li>
                   <NavLink activeClassName='is-active' to="/about">{window.i18nData.about}</NavLink>
@@ -145,7 +146,7 @@ export default class App extends React.Component {
             <div className="footerContact">
               <p>Instagram</p>
               <p>Facebook</p>
-              <a mailto="info@lebijou.es">info@lebijou.es</a>
+              <a href="#" mailto="info@lebijou.es">info@lebijou.es</a>
             </div>
           </div>
         </Router>

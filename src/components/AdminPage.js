@@ -1,10 +1,17 @@
 import React from 'react';
 import { Redirect } from "react-router-dom";
-import NewsForm from "./NewsForm";
+import CardFormBody from "./CardFormBody";
 
 export default class AdminPage extends React.Component {
 
-  state = { redirect: false };
+  constructor(props) {
+
+    super(props);
+    this.state = { redirect: false, slideInformation: [] };
+
+    this.setFormData = this.setFormData.bind(this);
+
+  }
 
   componentDidMount() {
 
@@ -20,7 +27,7 @@ export default class AdminPage extends React.Component {
     };
 
     fetch("http://localhost:4000/verifytoken", requestOptions)
-      .then((response) => { 
+      .then((response) => {
         if (response.ok) {
           return response.json();
         }
@@ -36,14 +43,65 @@ export default class AdminPage extends React.Component {
         alert(error);
         this.setState({ redirect: true });
       });
+
+
+    var requestOptions2 = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:4000/news/read", requestOptions2)
+      .then(response => response.json())
+      .then(result => this.setState({ slideInformation: result }))
+      .catch(error => console.log('error', error));
+
   }
 
-  logout=()=>{
+  logout = () => {
 
     localStorage.clear();
-    this.setState({redirect:true});
+    this.setState({ redirect: true });
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+
+    let myHeaders = new Headers();
+    const newNews=this.state.slideInformation;
+    const currentToken = localStorage.getItem("token");
+    myHeaders.append("access-token", currentToken);
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("newNews",JSON.stringify(newNews) );
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:4000/news/savenew", requestOptions)
+      .then(response => response.text())
+      .then(result => alert("Noticias salvadas"))
+      .catch(error => console.log('error', error));
+
+  }
+
+  setFormData = (state, activeSlide) => {
+
+
+    const currentNews = this.state.slideInformation;
+
+    const indexToModify = currentNews.findIndex(card => card.id === activeSlide);
+
+    currentNews.splice(indexToModify, 1, state);
+
+    this.setState({ slideInformation: currentNews });
+
+  }
   render() {
 
     const redirect = this.state.redirect;
@@ -56,9 +114,28 @@ export default class AdminPage extends React.Component {
 
       return (
 
-        <div className="app">
-          <NewsForm/>
-          <button onClick={this.logout}> Salir</button>
+        <div className="app adminPage">
+          <form onSubmit={this.handleSubmit} className="newsFormWrapper">
+            <div className="generalWrapper">
+
+              {this.state.slideInformation.map((slide) => {
+
+                return (
+                  <CardFormBody
+                    slide={slide}
+                    key={slide.id}
+                    setFormData={this.setFormData}
+                  />
+                )
+              })}
+
+            </div>
+            <div>
+              <button onClick={this.logout}> Salir</button>
+              <p>NOTA: las imagenes deben ser de un formato 1200x800 para su óptima visualización en la página.</p>
+              <button type="submit">Salvar Cambios</button>
+            </div>
+          </form>
         </div>
       )
 

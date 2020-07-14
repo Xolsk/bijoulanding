@@ -1,15 +1,17 @@
 import React from 'react';
+import { Redirect } from "react-router-dom";
 
 
 export default class ResetPasswordForm extends React.Component {
 
+  state = { redirect: false };
 
   resetPassword = (e) => {
 
 
     e.preventDefault();
 
-    const newPassword=e.target.password.value;
+    const newPassword = e.target.password.value;
 
     var myHeaders = new Headers();
     myHeaders.append("access-token", this.props.token);
@@ -26,14 +28,32 @@ export default class ResetPasswordForm extends React.Component {
     };
 
     fetch("http://localhost:4000/password/changepassword", requestOptions)
-      .then(response => response.text())
-      .then(result => alert(result))
-      .catch(error => console.log('error', error));
+      .then((response) => {
+        if (response.ok) {
+          
+          return response.text();
+        }
+        else {
+          throw new Error();
+        }
+      })
+      .then((result) => {
+        alert(result);
+        this.setState({ redirect: true });
+      })
+      .catch((error) => {
+        alert(error);
+      });
 
   }
 
   render() {
 
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to='/admin' />;
+    }
 
     return (
       <div className="app adminLogin">

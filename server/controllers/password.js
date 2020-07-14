@@ -1,6 +1,6 @@
 const admin = require("../models/passwordSchema.js");
 const bcrypt = require('bcrypt');
-const sendResetPasswordEmail = require("../mail/resetPassword.js");
+const sendResetPasswordEmail = require("../mail/resetPasswordEmail.js");
 const saltRounds = 10;
 const jwt = require("jsonwebtoken");
 const express = require('express');
