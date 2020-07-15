@@ -4,11 +4,31 @@ import {
 
   } from "react-router-dom";
   import logo from "../rsc/Logo Long.png";
+  import '../services/localisationService.js';
 
 
 export default class NavBar extends React.Component{
 
+  componentDidMount() {
 
+    if (window.navigator.language === "en") {
+
+      document.getElementById("enSelector").setAttribute("selected", true);
+
+    }
+    else {
+
+      document.getElementById("esSelector").setAttribute("selected", true);
+    }
+
+
+  }
+
+  changeLanguage = (e) => {
+
+    window.changeLanguage(e.target.value);
+    this.forceUpdate();
+  }
 
 render(){
 

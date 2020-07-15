@@ -18,8 +18,8 @@ export default class Home extends React.Component {
           </h2>
           </div>
         </div>
-           {/* <NewsCarousel />  */}
-        <div className="appThirdPage">
+           <NewsCarousel /> 
+        <div className="appThirdPage values">
           <div className="valuesWrapper">
             <div className="container" >
             <div className="textBox left">

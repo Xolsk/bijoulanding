@@ -1,6 +1,6 @@
-import { CarouselProvider, Slider, Slide, DotGroup } from 'pure-react-carousel';
 import React from 'react';
-import 'pure-react-carousel/dist/react-carousel.es.css';
+const Carousel = require('react-responsive-carousel').Carousel;
+
 
 
 export default class newsCarousel extends React.Component {
@@ -31,31 +31,32 @@ export default class newsCarousel extends React.Component {
 
         return (
 
-            <CarouselProvider
-                dragEnabled={false}
-                naturalSlideWidth={1}
-                naturalSlideHeight={2}
-                totalSlides={3}
-            >
-                <Slider>
-                    {this.state.slideInformation.map((slide, index) => {
-                        return (
-                            <Slide className={slide.id} key={slide.id} index={index}>
-                                <div className="newsWrapper">
-                                    <div className="newsImageWrapper">
-                                        <img alt="news"src={slide.image}></img>
-                                    </div>
-                                    <div className="newsContentWrapper">
-                                        <h1>{slide.title}</h1>
-                                        <h2>{slide.subtitle}</h2>
-                                        <p>{slide.text}</p>
-                                    </div>
-                                </div>
-                            </Slide>)
-                    })}
-                </Slider>
-                <DotGroup className="carouselDots" />
-            </CarouselProvider>
+            <Carousel showArrows={true}>
+            <div>
+                <img src="assets/1.jpeg" />
+                <p className="legend">Legend 1</p>
+            </div>
+            <div>
+                <img src="assets/2.jpeg" />
+                <p className="legend">Legend 2</p>
+            </div>
+            <div>
+                <img src="assets/3.jpeg" />
+                <p className="legend">Legend 3</p>
+            </div>
+            <div>
+                <img src="assets/4.jpeg" />
+                <p className="legend">Legend 4</p>
+            </div>
+            <div>
+                <img src="assets/5.jpeg" />
+                <p className="legend">Legend 5</p>
+            </div>
+            <div>
+                <img src="assets/6.jpeg" />
+                <p className="legend">Legend 6</p>
+            </div>
+        </Carousel>
 
         )
     }

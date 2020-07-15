@@ -392,6 +392,12 @@ select:active{
   display:flex;
 }
 
+.appThirdPage.values{
+
+  position:relative;
+  top: -3em;
+}
+
 /*VALUES SECTION*/ 
 
 .valuesWrapper{

@@ -21,31 +21,10 @@ import {
   NavLink,
   Redirect,
 } from "react-router-dom";
-import './services/localisationService.js';
+
 
 
 export default class App extends React.Component {
-
-  componentDidMount() {
-
-    if (window.navigator.language === "en") {
-
-      document.getElementById("enSelector").setAttribute("selected", true);
-
-    }
-    else {
-
-      document.getElementById("esSelector").setAttribute("selected", true);
-    }
-
-
-  }
-
-  changeLanguage = (e) => {
-
-    window.changeLanguage(e.target.value);
-    this.forceUpdate();
-  }
 
 
   render() {
