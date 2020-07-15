@@ -18,12 +18,11 @@ export default class Home extends React.Component {
           </h2>
           </div>
         </div>
-        <NewsCarousel />
+           {/* <NewsCarousel />  */}
         <div className="appThirdPage">
-          <div className="containerWrapper">
+          <div className="valuesWrapper">
             <div className="container" >
-
-              <div className="textBox left">
+            <div className="textBox left">
                 Agilidad
               </div>
               <div className="arrowPosition">

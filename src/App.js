@@ -10,6 +10,8 @@ import AdminPage from "./components/AdminPage.js";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import PublicRoute from "./components/PublicRoute";
+import NavBar from "./components/NavBar";
+import BurgerMenu from "./components/BurgerMenu.js";
 import PrivateRoute from "./components/PrivateRoute";
 import ResetPassword from "./components/ResetPassword";
 import {
@@ -20,8 +22,6 @@ import {
   Redirect,
 } from "react-router-dom";
 import './services/localisationService.js';
-import logo from './rsc/Logo Long.png';
-
 
 
 export default class App extends React.Component {
@@ -49,51 +49,14 @@ export default class App extends React.Component {
 
 
   render() {
+
+    
     return (
       <div className="App">
         <Router>
           <ScrollToTop />
-
-          
-          <div className="header" >
-            <div className="headerElement left">
-              <div className="navImageWrapper">
-                <NavLink className="imageLink" to="/home">
-                <img className="navBarLogo" src={logo} alt="Le Bijou Logo"></img>
-                </NavLink>
-              </div>
-            </div>
-
-            <div className="headerElement nav">
-              <ul className="navBar" >
-                <li >
-                  <NavLink  activeClassName='is-active' to="/home">{window.i18nData.home}</NavLink>
-                </li>
-                <li>
-                  <NavLink activeClassName='is-active' to="/about">{window.i18nData.about}</NavLink>
-                </li>
-                <li>
-                  <NavLink activeClassName='is-active' to="/product">{window.i18nData.product}</NavLink>
-                </li>
-                <li>
-                  <NavLink activeClassName='is-active' to="/team">{window.i18nData.team}</NavLink>
-                </li>
-                <li>
-                  <a href="http://lebijou.es">{window.i18nData.store}</a>
-                </li>
-                <li>
-                  <NavLink activeClassName='is-active' to="/contact">{window.i18nData.contact}</NavLink>
-                </li>
-              </ul>
-            </div>
-            <div className="headerElement right">
-              <select onChange={this.changeLanguage} >
-                <option id="esSelector" value="es">ES</option>
-                <option id="enSelector" value="en">EN</option>
-              </select>
-            </div>
-          </div>
-          <div>
+          <NavBar/>
+          <BurgerMenu/>
             <Switch>
               <PublicRoute restricted={false} component={About} path="/about" />
               <PublicRoute restricted={false} component={Team} path="/team" />
@@ -108,7 +71,6 @@ export default class App extends React.Component {
               </Route>
 
             </Switch>
-          </div>
           <div className="footer">
             <div>
               <ul>
