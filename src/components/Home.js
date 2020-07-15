@@ -11,7 +11,7 @@ export default class Home extends React.Component {
       <div className="content" >
         <div className="app home">
           <div className="coverText">
-            <img className="bigLogo" src={bigLogo} />
+            <img  alt="bigLogo" className="bigLogo" src={bigLogo} />
             <h1>Le Bijou</h1>
             <h2>
               Tu mayorista de bisutería y complementos desde hace más de 10 años.

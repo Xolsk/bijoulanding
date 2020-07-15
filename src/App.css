@@ -6,19 +6,19 @@
   color: rgb(202,168,158);
 }
 
+.App{
+
+  max-width:1440px;
+  margin:auto;
+}
+
+
 .app {
   text-align: center;
   height: 88vh;
   display:flex;
 
-}
 
-.app.home{
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
- 
 }
 
 .appImg{
@@ -26,6 +26,8 @@
   height:88vh;
   
 }
+
+/* NAVBAR */
 
 .header{
 
@@ -43,26 +45,12 @@
   
 }
 
-.headerElement.left{
-
-  text-align:left;
-  padding-left:0.5em;
-}
-
 .headerElement.right{
 
   text-align:right;
   padding-right:3em;
 }
 
-.bigLogo{
-
-  max-width:250px;
-  max-height:250px;
-   border: 10px solid black;
-  border-radius: 100%; 
-
-}
 .headerElement.nav{
 
   width:60% !important;
@@ -76,7 +64,10 @@
 
 .navBarLogo{
 
-  height:100px;
+  height: auto;
+  width: auto;
+  max-height: 100px;
+  max-width: 250px;
 }
 
 .navBar li {
@@ -84,31 +75,16 @@
   
 }
 
-.app.about{
-
-  align-items:center;
-  justify-content:space-around;
-
-
-}
-
-.imageWrapperAbout01{
-
-  width:30%;
-  background-color:red;
-  height:60vh;
-}
-
-.textWrapperAbout01{
-
-  width: 50%;
-  height:60vh;
-}
-
 .header a{
   text-decoration:none;
   padding:0.6em 0.4em;
   margin:0.4em;
+}
+
+.imageLink{
+
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .header a:hover{
@@ -143,6 +119,56 @@ select:active{
   border:2px solid rgb(66, 37, 28);
   padding:0.2em;
 }
+
+@media (max-width:1000px){
+
+
+  .header{
+
+    display:none;
+  }
+}
+/*HOME*/
+
+.app.home{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ 
+}
+
+
+.bigLogo{
+
+  max-width:250px;
+  max-height:250px;
+   border: 10px solid black;
+  border-radius: 100%; 
+
+}
+
+.app.about{
+
+  align-items:center;
+  justify-content:space-around;
+
+
+}
+
+.imageWrapperAbout01{
+
+  width:30%;
+  background-color:red;
+  height:60vh;
+}
+
+.textWrapperAbout01{
+
+  width: 50%;
+  height:60vh;
+}
+
 
 .coverText{
 
@@ -193,20 +219,75 @@ select:active{
   height:88vh;
 }
 
-.slide01{
+.Slide01{
 
   background-color:white;
+  display:flex;
 }
 
-.slide02{
+.Slide02{
 
-  background-color: rgb(249,249, 249)
+  background-color: rgb(249,249, 249);
+  display:flex;
 }
 
-.slide03{
+.Slide03{
 
-  background-color:rgb(229,226, 221)
+  background-color:rgb(229,226, 221);
+  display:flex;
 }
+
+.newsWrapper{
+
+  margin:6em;
+  display:flex;
+  
+}
+
+.newsWrapper h1{
+
+  color:black;
+}
+
+
+.newsWrapper p{
+
+  color:black;
+}
+
+.newsWrapper h2{
+
+  color:white;
+  background-color:black;
+  max-width:fit-content;
+  padding:0.2em 15em 0.2em 0.2em;
+  margin:0.5em 0;
+}
+
+.newsImageWrapper{
+
+  width:50%;
+  margin-right: 4em;
+ 
+}
+
+.newsImageWrapper img{
+
+  height: auto;
+  max-height:55vh;
+  object-fit: contain; 
+
+
+}
+
+.newsContentWrapper{
+
+  width:50%;
+}
+
+
+
+
 
 .carouselDots{
 
@@ -618,4 +699,79 @@ align-self:center;
 #root > div > div:nth-child(2) > div > form > div:nth-child(2) > p{
 
   color:black;
+}
+
+@media (max-width:1050px){
+
+  .newsWrapper h2{
+
+    padding:0.2em 8em 0.2em 0.2em;
+
+  }
+
+.newsWrapper{
+
+  margin:2em;
+}
+  
+}
+@media (max-width:900px){
+
+  .newsImageWrapper img{
+
+    max-height: 50vh;
+  }
+ 
+}
+
+@media (max-width:799px){
+
+  #root > div > div:nth-child(2) > div > div.carousel > div.horizontalSlider___281Ls.carousel__slider.carousel__slider--horizontal {
+     height: 120vh;
+}
+ 
+  .newsImageWrapper {
+ 
+    margin-right: 0;
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+
+.newsContentWrapper{
+
+  width:100%;
+}
+.newsWrapper {
+    flex-direction: column;
+    align-items:center; 
+
+  }
+
+.newsImageWrapper img{
+
+    max-height: 50vh;
+}
+
+#root > div > div:nth-child(2) > div > div.carousel{
+
+  height:auto;
+}
+
+}
+
+@media (max-width:500px){
+
+
+.containerWrapper{
+
+  flex-direction:column;
+}
+
+.container{
+
+  width:100%;
+  margin:2em 0;
+}
+
 }

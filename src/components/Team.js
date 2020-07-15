@@ -49,9 +49,6 @@ export default class Team extends React.Component {
             </div>
           </div>
         </div>
-        <div className="appThirdPage">
-          Third
-</div>
       </div>
     );
   }

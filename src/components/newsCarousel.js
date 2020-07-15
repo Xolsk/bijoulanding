@@ -7,9 +7,9 @@ export default class newsCarousel extends React.Component {
 
     state = {
         slideInformation: [
-            { title: "default", subtitle: "default", text: "default", image: "default" },
-            { title: "default", subtitle: "default", text: "default", image: "default" },
-            { title: "default", subtitle: "default", text: "default", image: "default" }
+            { id: "default01", title: "default", subtitle: "default", text: "default", image: "default" },
+            { id: "default02", title: "default", subtitle: "default", text: "default", image: "default" },
+            { id: "default03", title: "default", subtitle: "default", text: "default", image: "default" }
         ]
     };
 
@@ -38,14 +38,21 @@ export default class newsCarousel extends React.Component {
                 totalSlides={3}
             >
                 <Slider>
-                    <Slide className="slide01" index={0}>
-                        <h1>{this.state.slideInformation[0].title}</h1>
-                        <h2>hola</h2>
-
-
-                    </Slide>
-                    <Slide className="slide02" index={1}>I am the second Slide.</Slide>
-                    <Slide slide={this.state.slideInformation[2]} className="slide03" index={2}>I am the third Slide.</Slide>
+                    {this.state.slideInformation.map((slide, index) => {
+                        return (
+                            <Slide className={slide.id} key={slide.id} index={index}>
+                                <div className="newsWrapper">
+                                    <div className="newsImageWrapper">
+                                        <img alt="news"src={slide.image}></img>
+                                    </div>
+                                    <div className="newsContentWrapper">
+                                        <h1>{slide.title}</h1>
+                                        <h2>{slide.subtitle}</h2>
+                                        <p>{slide.text}</p>
+                                    </div>
+                                </div>
+                            </Slide>)
+                    })}
                 </Slider>
                 <DotGroup className="carouselDots" />
             </CarouselProvider>

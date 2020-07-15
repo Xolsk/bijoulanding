@@ -132,7 +132,7 @@ export default class AdminPage extends React.Component {
             </div>
             <div>
               <button onClick={this.logout}> Salir</button>
-              <p>NOTA: las imagenes deben ser de un formato 1200x800 para su óptima visualización en la página.</p>
+              <p>NOTA: las imagenes deben ser de un formato 600x400 o proporcional para su óptima visualización en la página.</p>
               <button type="submit">Salvar Cambios</button>
             </div>
           </form>

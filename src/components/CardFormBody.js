@@ -74,6 +74,10 @@ export default class CardFormBody extends React.Component {
 
     handleTextChange(event) {
         const newValue = event.target.value;
+        if (newValue.length>550){
+            alert("No se permiten textos de más de 550 espacios");
+            return;
+        }
         const activeSlide = event.target.name
         this.setState({
             text: newValue

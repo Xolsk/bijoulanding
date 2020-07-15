@@ -53,15 +53,14 @@ export default class App extends React.Component {
       <div className="App">
         <Router>
           <ScrollToTop />
+
+          
           <div className="header" >
             <div className="headerElement left">
               <div className="navImageWrapper">
-                <NavLink to="/home">
+                <NavLink className="imageLink" to="/home">
                 <img className="navBarLogo" src={logo} alt="Le Bijou Logo"></img>
                 </NavLink>
-              </div>
-              <div>
-
               </div>
             </div>
 
