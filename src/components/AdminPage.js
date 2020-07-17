@@ -4,14 +4,19 @@ import CardFormBody from "./CardFormBody";
 
 export default class AdminPage extends React.Component {
 
-  constructor(props) {
 
-    super(props);
+  constructor(props) {
+    super(props)
     this.state = { redirect: false, slideInformation: [] };
 
-    this.setFormData = this.setFormData.bind(this);
+
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleImgChange = this.handleImgChange.bind(this);
+    this.handleSubtitleChange = this.handleSubtitleChange.bind(this);
+    this.handleTextChange = this.handleTextChange.bind(this)
 
   }
+
 
   componentDidMount() {
 
@@ -66,6 +71,7 @@ export default class AdminPage extends React.Component {
     this.setState({ redirect: true });
   }
 
+
   handleSubmit = (e) => {
     e.preventDefault()
 
@@ -92,60 +98,108 @@ export default class AdminPage extends React.Component {
 
   }
 
-  setFormData = (state, activeSlide) => {
+  setFormData = (inputData, activeSlide) => {
 
+    console.log(inputData, activeSlide)
 
-    const currentNews = this.state.slideInformation;
-
-    const indexToModify = currentNews.findIndex(card => card.id === activeSlide);
-
-    currentNews.splice(indexToModify, 1, state);
-
-    this.setState({ slideInformation: currentNews });
 
   }
-
 
   onDragOver = (event) => {
     event.preventDefault();
   }
 
-  getDraggedCard = () => {
+  onDrop = (event) => {
 
-    const { draggedCard } = this.state;
+    let { slideInformation } = this.state;
+    const receiverId = event.target.name;
+    const indexReceiver = slideInformation.findIndex((element) => element.id === receiverId);
+    const receiver = slideInformation[indexReceiver]
 
+    let incomingCard = this.state.draggedCard;
+    const indexDragged = slideInformation.findIndex((element) => element.id === incomingCard.id)
 
-    return draggedCard;
-  }
+    receiver.id = incomingCard.id;
+    incomingCard.id = receiverId;
+    slideInformation.splice(indexReceiver, 1, receiver);
+    slideInformation.splice(indexDragged, 1, incomingCard);
 
-  onDropParentData = (receiverCard) => {
-
-    let {slideInformation}=this.state;
-    let draggedCard = this.state.draggedCard;
-
-    const indexDragged= slideInformation.findIndex((element)=>element.id===draggedCard.id)
-  
-    const indexReceiver= slideInformation.findIndex((element)=>element.id===receiverCard.id)
-
-    let draggedCardIdStorage = this.state.draggedCard.id;
-    
-    draggedCard.id = receiverCard.id;
-    receiverCard.id = draggedCardIdStorage;
-
-    slideInformation.splice(indexDragged,1,draggedCard);
-    slideInformation.splice(indexReceiver,1,receiverCard);
-
-    this.setState({slideInformation});
+    slideInformation.sort((a, b) => (a.id > b.id) ? 1 : (a.id === b.id) ? ((a.id > b.id) ? 1 : -1) : -1)
+    this.setState({ slideInformation, draggedCard: "" }, () => { this.forceUpdate() });
 
   }
 
+  setOnDrag = (sender) => {
 
-  onDrag = (event, slide) => {
-
-    event.preventDefault();
-    this.setState({ draggedCard: slide })
+    this.setState({ draggedCard: sender })
 
   }
+
+  handleTitleChange(event) {
+
+    const newTitle = event.target.value;
+    const activeSlide = event.target.name;
+    const slideInformation = this.state.slideInformation;
+
+    const foundItem = slideInformation.find((element) => element.id === activeSlide);
+    foundItem.title = newTitle;
+    this.setState({ foundItem })
+
+  }
+
+  handleSubtitleChange(event) {
+
+    const newsubtitle = event.target.value;
+    const activeSlide = event.target.name;
+    const slideInformation = this.state.slideInformation;
+
+    const foundItem = slideInformation.find((element) => element.id === activeSlide);
+    foundItem.subtitle = newsubtitle;
+    this.setState({ foundItem })
+
+  }
+
+  handleTextChange(event) {
+    const newText= event.target.value;
+    const activeSlide = event.target.name;
+    const slideInformation = this.state.slideInformation;
+    if (newText.length > 550) {
+        alert("No se permiten textos de más de 550 espacios");
+        return;
+    }
+    const foundItem = slideInformation.find((element) => element.id === activeSlide);
+    foundItem.text = newText;
+    this.setState({ foundItem })
+}
+
+handleImgChange(event) {
+
+  let newImage = undefined;
+  const activeSlide = event.target.name;
+  const slideInformation = this.state.slideInformation;
+
+  window.cloudinary.openUploadWidget({
+      cloud_name: 'lebijoubcn',
+      upload_preset: 'kreznlvo',
+      tags: ['web'],
+  },
+      (error, result) => {
+          if (error) {
+              console.log(error);
+          } else {
+              if (result.info.secure_url !== undefined) {
+                  newImage = result.info.secure_url;
+                  const foundItem = slideInformation.find((element) => element.id === activeSlide);
+                  foundItem.image = newImage;
+                  this.setState({ foundItem })
+
+              }
+          }
+      })
+
+}
+
+
   render() {
 
     const redirect = this.state.redirect;
@@ -162,19 +216,21 @@ export default class AdminPage extends React.Component {
           <form onSubmit={this.handleSubmit} className="newsFormWrapper">
             <div className="generalWrapper">
 
-              {this.state.slideInformation.map((slide,index) => {
+              {this.state.slideInformation.map((slide, index) => {
 
                 return (
                   <CardFormBody
 
-                    getDraggedCard={this.getDraggedCard}
+                    setOnDrag={this.setOnDrag}
                     key={index}
-                    onDropParentData={this.onDropParentData}
-                    onDrag={this.onDrag}
+                    onDrop={this.onDrop}
                     slide={slide}
                     onDragOver={this.onDragOver}
-
                     setFormData={this.setFormData}
+                    handleTitleChange={this.handleTitleChange}
+                    handleImgChange = {this.handleImgChange}
+                    handleSubtitleChange = {this.handleSubtitleChange}
+                    handleTextChange = {this.handleTextChange}
 
                   />
                 )
