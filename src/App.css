@@ -192,7 +192,7 @@ select:active{
 
   .headerElement.nav{
 
-    width:80%;
+    width:90%;
 
   }
 
@@ -205,7 +205,11 @@ select:active{
 
 @media (max-width:650px){
 
+  .headerElement.right{
 
+    padding-right:0;
+  }
+  
   .header{
 
     display:none;
@@ -365,26 +369,6 @@ select:active{
   width:50%;
 }
 
-.carouselDots{
-
-  display:flex;
-  justify-content:center;
-  position:relative;
-  top:-3em;
-}
-
-.carouselDots button{
-
-  outline:none;
- 
-  border-radius:100%;
-  padding:0.8em;
-  margin:1em;
-  border:none;
-  background-color: black transparent;
-  box-shadow: 1px 2px 2px 0px rgba(0,0,0,0.75) ;
-}
-
 .appThirdPage{
 
   text-align: center;
@@ -392,13 +376,9 @@ select:active{
   display:flex;
 }
 
-.appThirdPage.values{
-
-  position:relative;
-  top: -3em;
-}
 
 /*VALUES SECTION*/ 
+
 
 .valuesWrapper{
 
@@ -515,6 +495,7 @@ height:35vh;
 
   
 }
+
 @media(max-width:650px){
 
 
@@ -523,6 +504,7 @@ height:35vh;
     font-size:1.5em;
   }
 }
+
 @media (max-width:500px){
 
   .textBox{
@@ -546,7 +528,7 @@ height:35vh;
   }
   
   
-  }
+}
 
 
 /*TEAM SECTION*/
@@ -783,7 +765,6 @@ margin: 1em;
   display:flex;
   justify-content:space-around;
   width:100%;
-  height:75vh;
 }
 
 .slidesWrapper{
@@ -796,10 +777,10 @@ margin: 1em;
 
 .newsCard{
 
-width:33%;
 border:2px solid black;
 display:flex;
 flex-direction:column;
+width:100%;
 
 }
 

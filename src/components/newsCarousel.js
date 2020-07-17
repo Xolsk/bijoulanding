@@ -1,5 +1,6 @@
 import React from 'react';
-const Carousel = require('react-responsive-carousel').Carousel;
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 
 
@@ -29,35 +30,42 @@ export default class newsCarousel extends React.Component {
 
     render() {
 
+        const { slideInformation } = this.state
+        const responsive = {
+            superLargeDesktop: {
+                breakpoint: { max: 4000, min: 3000 },
+                items: 1
+            },
+            desktop: {
+                breakpoint: { max: 3000, min: 1024 },
+                items: 1
+            },
+            tablet: {
+                breakpoint: { max: 1024, min: 464 },
+                items: 1
+            },
+            mobile: {
+                breakpoint: { max: 464, min: 0 },
+                items: 1
+            }
+        };
+
         return (
 
-            <Carousel showArrows={true}>
-            <div>
-                <img src="assets/1.jpeg" />
-                <p className="legend">Legend 1</p>
-            </div>
-            <div>
-                <img src="assets/2.jpeg" />
-                <p className="legend">Legend 2</p>
-            </div>
-            <div>
-                <img src="assets/3.jpeg" />
-                <p className="legend">Legend 3</p>
-            </div>
-            <div>
-                <img src="assets/4.jpeg" />
-                <p className="legend">Legend 4</p>
-            </div>
-            <div>
-                <img src="assets/5.jpeg" />
-                <p className="legend">Legend 5</p>
-            </div>
-            <div>
-                <img src="assets/6.jpeg" />
-                <p className="legend">Legend 6</p>
-            </div>
-        </Carousel>
+            <Carousel responsive={responsive}>
 
+                {slideInformation.map((slide) => {
+
+                    return(
+
+                    <div className={slide.id} style={{ height: "70vh" }}>
+                        {slide.title}
+                        </div>
+                    )
+                })}
+
+
+            </Carousel>
         )
     }
 

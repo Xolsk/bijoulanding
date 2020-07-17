@@ -38,6 +38,7 @@ export default class AdminPage extends React.Component {
       .then((response) => {
 
         this.setState({ redirect: false });
+
       })
       .catch((error) => {
         alert(error);
@@ -56,6 +57,7 @@ export default class AdminPage extends React.Component {
       .then(result => this.setState({ slideInformation: result }))
       .catch(error => console.log('error', error));
 
+
   }
 
   logout = () => {
@@ -68,13 +70,13 @@ export default class AdminPage extends React.Component {
     e.preventDefault()
 
     let myHeaders = new Headers();
-    const newNews=this.state.slideInformation;
+    const newNews = this.state.slideInformation;
     const currentToken = localStorage.getItem("token");
     myHeaders.append("access-token", currentToken);
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
     var urlencoded = new URLSearchParams();
-    urlencoded.append("newNews",JSON.stringify(newNews) );
+    urlencoded.append("newNews", JSON.stringify(newNews));
 
     var requestOptions = {
       method: 'POST',
@@ -102,6 +104,48 @@ export default class AdminPage extends React.Component {
     this.setState({ slideInformation: currentNews });
 
   }
+
+
+  onDragOver = (event) => {
+    event.preventDefault();
+  }
+
+  getDraggedCard = () => {
+
+    const { draggedCard } = this.state;
+
+
+    return draggedCard;
+  }
+
+  onDropParentData = (receiverCard) => {
+
+    let {slideInformation}=this.state;
+    let draggedCard = this.state.draggedCard;
+
+    const indexDragged= slideInformation.findIndex((element)=>element.id===draggedCard.id)
+  
+    const indexReceiver= slideInformation.findIndex((element)=>element.id===receiverCard.id)
+
+    let draggedCardIdStorage = this.state.draggedCard.id;
+    
+    draggedCard.id = receiverCard.id;
+    receiverCard.id = draggedCardIdStorage;
+
+    slideInformation.splice(indexDragged,1,draggedCard);
+    slideInformation.splice(indexReceiver,1,receiverCard);
+
+    this.setState({slideInformation});
+
+  }
+
+
+  onDrag = (event, slide) => {
+
+    event.preventDefault();
+    this.setState({ draggedCard: slide })
+
+  }
   render() {
 
     const redirect = this.state.redirect;
@@ -118,17 +162,23 @@ export default class AdminPage extends React.Component {
           <form onSubmit={this.handleSubmit} className="newsFormWrapper">
             <div className="generalWrapper">
 
-              {this.state.slideInformation.map((slide) => {
+              {this.state.slideInformation.map((slide,index) => {
 
                 return (
                   <CardFormBody
+
+                    getDraggedCard={this.getDraggedCard}
+                    key={index}
+                    onDropParentData={this.onDropParentData}
+                    onDrag={this.onDrag}
                     slide={slide}
-                    key={slide.id}
+                    onDragOver={this.onDragOver}
+
                     setFormData={this.setFormData}
+
                   />
                 )
               })}
-
             </div>
             <div>
               <button onClick={this.logout}> Salir</button>

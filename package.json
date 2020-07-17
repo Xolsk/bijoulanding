@@ -9,7 +9,7 @@
     "cloudinary-core": "^2.10.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-elastic-carousel": "^0.6.4",
+    "react-multi-carousel": "^2.5.5",
     "react-scripts": "3.4.1",
     "react-visibility-sensor": "^5.1.1"
   },
