@@ -5,7 +5,7 @@ const contactEmail = (req, res) => {
 
   // Instantiate the SMTP server
   const smtpTrans = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    host: 'smtp",
     port: 465,
     secure: true,
     auth: {
@@ -17,7 +17,7 @@ const contactEmail = (req, res) => {
   // Specify what the email will look like
   const mailOpts = {
     from: 'Your sender info here', // This is ignored by Gmail
-    to: "xolsco@gmail.com",
+    to: "email here",
     subject: 'Nuevo mensaje desde la página web de Le Bijou',
     text: `Mensaje enviado por ${req.body.name}  ${req.body.lastName} de ${req.body.business} con 
       correo ${req.body.email}. \n ${req.body.text}`
