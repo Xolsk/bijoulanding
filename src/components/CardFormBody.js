@@ -8,10 +8,6 @@ export default class CardFormBody extends React.Component {
       }
 
 
-
-
-    
-    
     onDrag = () => {
 
         const activeSlide = this.props.slide;

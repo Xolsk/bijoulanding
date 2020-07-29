@@ -16,6 +16,12 @@ export default class BurgerMenu extends React.Component {
     
   }
 
+  switchLang=()=>{
+
+    this.setState({switchTo:"Pasar a Version Española"});
+    this.props.changeLanguage();
+  }
+
   closeMenu=(e)=>{
 
     e.stopPropagation();
@@ -51,7 +57,7 @@ export default class BurgerMenu extends React.Component {
             <li>
               <NavLink  to="/contact">{window.i18nData.contact}</NavLink>
             </li>
-            <li>
+            <li onClick={this.switchLang}>
               {this.state.switchTo}
             </li>
 

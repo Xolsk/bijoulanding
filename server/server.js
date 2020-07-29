@@ -9,9 +9,10 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-mongoose.connect('mongodb://127.0.0.1/leBijouWeb', () => {
+mongoose.connect('mongodb://127.0.0.1/leBijouWeb',{ useUnifiedTopology: true,useNewUrlParser: true, } ,() => {
     console.log('connected to mongodb');
 })
+mongoose.set('useFindAndModify', false);
 
 app.use(cors());
 

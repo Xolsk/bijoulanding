@@ -21,35 +21,67 @@ import {
   NavLink,
   Redirect,
 } from "react-router-dom";
+import en from './langs/en'
+import es from './langs/es'
+
 
 
 
 export default class App extends React.Component {
 
 
+  componentDidMount() {
+
+    const languages = {
+      en,
+      es
+    };
+
+    if (window.navigator.language === "en") {
+
+      document.getElementById("enSelector").setAttribute("selected", true);
+      this.setState({ language: languages.en })
+
+    }
+    else {
+
+      document.getElementById("esSelector").setAttribute("selected", true);
+      this.setState({ language: languages.es })
+    }
+
+  }
+
+  changeLanguage = (e) => {
+
+    window.changeLanguage(e.target.value);
+    const activeLanguage = window.i18nData;
+    this.setState({ activeLanguage })
+  }
+
+
   render() {
 
-    
+
     return (
       <div className="App">
         <Router>
           <ScrollToTop />
-          <NavBar/>
-          <BurgerMenu/>
-            <Switch>
-              <PublicRoute restricted={false} component={About} path="/about" />
-              <PublicRoute restricted={false} component={Team} path="/team" />
-              <PublicRoute restricted={false} component={Contact} path="/contact" />
-              <PublicRoute restricted={false} component={Product} path="/product" />
-              <PublicRoute restricted={false} component={Home} path="/home" />
-              <PublicRoute restricted={true} component={AdminLogin} path="/admin" />
-              <PrivateRoute component={AdminPage} path="/dashboard" />
-              <Route path="/resetpassword/:token" children={<ResetPassword/>}/>
-              <Route path="/">
-                <Redirect to="/home" />
-              </Route>
+          <NavBar language={this.state} changeLanguage={this.changeLanguage} />
+          <BurgerMenu language={this.state} changeLanguage={this.changeLanguage} />
+          <Switch>
+            <PublicRoute restricted={false} component={About} path="/about" />
+            <PublicRoute restricted={false} component={Team} path="/team" />
+            <PublicRoute restricted={false} component={Contact} path="/contact" />
+            <PublicRoute restricted={false} component={Product} path="/product" />
+            <PublicRoute restricted={false} component={Home} path="/home" />
+            <PublicRoute restricted={true} component={AdminLogin} path="/admin" />
+            <PrivateRoute component={AdminPage} path="/dashboard" />
+            <Route path="/resetpassword/:token" children={<ResetPassword />} />
+            <Route path="/">
+              <Redirect to="/home" />
+            </Route>
 
-            </Switch>
+          </Switch>
           <div className="footer">
             <div>
               <ul>

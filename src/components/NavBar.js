@@ -1,38 +1,18 @@
 import React from "react";
-import {
-    NavLink,
-
-  } from "react-router-dom";
+import { NavLink,useLocation } from "react-router-dom";
   import logo from "../rsc/Logo Long.png";
-  import '../services/localisationService.js';
 
 
-export default class NavBar extends React.Component{
 
-  componentDidMount() {
+export default function NavBar (props){
 
-    if (window.navigator.language === "en") {
+  let location = useLocation();
 
-      document.getElementById("enSelector").setAttribute("selected", true);
-
-    }
-    else {
-
-      document.getElementById("esSelector").setAttribute("selected", true);
-    }
-
-
-  }
-
-  changeLanguage = (e) => {
-
-    window.changeLanguage(e.target.value);
-    this.forceUpdate();
-  }
-
-render(){
+  console.log(location);
 
     return (
+
+     
     <div className="header" >
     <div className="headerElement left">
       <div className="navImageWrapper">
@@ -65,7 +45,7 @@ render(){
       </ul>
     </div>
     <div className="headerElement right">
-      <select onChange={this.changeLanguage} >
+      <select onChange={props.changeLanguage} >
         <option id="esSelector" value="es">ES</option>
         <option id="enSelector" value="en">EN</option>
       </select>
@@ -73,4 +53,3 @@ render(){
   </div>
     )
       }
-}

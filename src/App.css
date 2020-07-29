@@ -50,6 +50,7 @@
 
   width:60%;
 }
+
 .navBar{
 
   width:100%;
@@ -78,16 +79,18 @@
 
 .navBurger{
 
-  background-color: black;
-  opacity:0.7;
+
   width:100%;
+  list-style-type: none;
+  width:90%;
 
 }
 
 .navBurger li{
 
-  padding:2em 0;
-  margin:1em 1em,
+  padding:1em 0.2em;
+  margin:0.7em 1em;
+  border: 1px solid white;
 }
 
 .navBurger a{
@@ -148,10 +151,20 @@ select:active{
 .menuList{
   left: 0;
   top: 0;
-  transform: translate3d(-100vw, 0, 0);      
- width: 100vw;
-  height: 100vw;
-  transition: transform .3s cubic-bezier(0, .52, 0, 1);
+  transform: translate3d(-100vw, 0, 0);
+  background-color: black;
+  opacity: 0.9;
+  width: 100vw;
+  position:absolute;
+  height: 100vh;
+  z-index:99;
+  transition: transform .3s;
+}
+
+.menuList li{
+
+  padding-left:2em;
+
 }
 
 .menuList.visible {
@@ -226,6 +239,7 @@ select:active{
 .coverText{
 
   height: 100vh;
+  min-height:500px; 
   background: rgb(241, 232, 228);
   width: 100%;
   display: flex;
@@ -268,6 +282,7 @@ select:active{
 
   align-items:center;
   justify-content:space-around;
+  height:88vh;
 
 }
 
@@ -324,8 +339,11 @@ select:active{
 
 .newsWrapper{
 
-  margin:6em;
+  margin:3.5em 3em;
   display:flex;
+  width:100%;
+  align-items:center;
+
   
 }
 
@@ -344,22 +362,37 @@ select:active{
 
   color:white;
   background-color:black;
-  max-width:fit-content;
-  padding:0.2em 15em 0.2em 0.2em;
+  padding:0.2em 1em 0.2em 0.2em;
   margin:0.5em 0;
+}
+
+.centerContent{
+
+  display:flex;
+  width:100%;
+  justify-items:space-between;
 }
 
 .newsImageWrapper{
 
-  width:50%;
-  margin-right: 4em;
+  width:100%;
+  margin:0 3em;
+
  
+}
+
+.texts{
+
+  width:100%;
+  margin:0 3em 0 0;
 }
 
 .newsImageWrapper img{
 
   height: auto;
-  max-height:55vh;
+  max-width: 400px;
+  max-height: 600px;
+ width:auto;
   object-fit: contain; 
 
 }
@@ -376,6 +409,24 @@ select:active{
   display:flex;
 }
 
+@media (max-width:850px){
+
+  .centerContent{
+  flex-direction: column;
+  }
+  #root > div > div.content > div.react-multi-carousel-list > ul > li.react-multi-carousel-item.react-multi-carousel-item--active > div > div > div > div:nth-child(2)
+  {
+    margin-top:2em;
+  }
+
+  .newsImageWrapper {
+    width: 100%;
+     margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+
 
 /*VALUES SECTION*/ 
 
@@ -387,6 +438,7 @@ select:active{
   margin-top:4em;
   width:100%;
   height: 100vh;
+
 }
 
 .container{
@@ -810,29 +862,6 @@ align-self:center;
 #root > div > div:nth-child(2) > div > form > div:nth-child(2) > p{
 
   color:black;
-}
-
-@media (max-width:1050px){
-
-  .newsWrapper h2{
-
-    padding:0.2em 8em 0.2em 0.2em;
-
-  }
-
-.newsWrapper{
-
-  margin:2em;
-}
-  
-}
-@media (max-width:900px){
-
-  .newsImageWrapper img{
-
-    max-height: 50vh;
-  }
- 
 }
 
 

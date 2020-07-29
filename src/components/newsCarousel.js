@@ -52,14 +52,27 @@ export default class newsCarousel extends React.Component {
 
         return (
 
-            <Carousel responsive={responsive}>
+            <Carousel responsive={responsive} infinite>
 
                 {slideInformation.map((slide) => {
 
-                    return(
+                    return (
 
-                    <div className={slide.id} style={{ height: "70vh" }}>
-                        {slide.title}
+                        <div key={slide.id} className={slide.id} style={{ height: "70vh",minHeight:"700px" }}>
+                            <div className="newsWrapper">
+                                <div className="centerContent">
+                                    <div className="newsImageWrapper">
+                                        <img alt ="news" src={slide.image} />
+                                    </div>
+                                    <div>
+                                        <div className="texts">
+                                            <h1>{slide.title}</h1>
+                                            <h2>{slide.subtitle}</h2>
+                                            <p>{slide.text}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     )
                 })}

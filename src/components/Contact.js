@@ -40,20 +40,20 @@ export default class Contact extends React.Component {
       <div className="content">
         <div className="formWrapper">
           <div className="contactText">
-            <h1>¡Contacta con Le Bijou!</h1>
+            <h1>{window.i18nData.contactblurb}</h1>
             <a href="mailto:info@lebijou.es">info@lebijou.es</a>
             <a href="92939393">933949959</a>
           </div>
           <form onSubmit={this.handleSubmit} className="contactForm">
             <div className="formData">
-              <input id="name" type="text" name="name" placeholder="Nombre" required></input>
-              <input id="lastName" type="text" name="lastName" placeholder="Apellido"></input>
-              <input id="email" type="email" name="email" placeholder="Email" required></input>
-              <input id="business" type="text" name="business" placeholder="Empresa"></input>
+              <input id="name" type="text" name="name" placeholder={window.i18nData.formName} required></input>
+              <input id="lastName" type="text" name={window.i18nData.formLastName}  placeholder="Apellido"></input>
+              <input id="email" type="email" name="email" placeholder={window.i18nData.formEmail} required></input>
+              <input id="business" type="text" name="business" placeholder={window.i18nData.formCorp}></input>
             </div>
             <div className="formSubmit">
-              <textarea name="text" placeholder="Escriba aquí su mensaje" />
-              <button className="formButton" type="submit">Envía</button>
+              <textarea name="text" placeholder={window.i18nData.formTextArea} />
+              <button className="formButton" type="submit">{window.i18nData.sendButton}</button>
             </div>
           </form>
 

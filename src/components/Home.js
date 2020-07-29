@@ -11,10 +11,10 @@ export default class Home extends React.Component {
       <div className="content" >
         <div className="app home">
           <div className="coverText">
-            <img  alt="bigLogo" className="bigLogo" src={bigLogo} />
+            <img   alt="bigLogo" className="bigLogo animate__animated animate__bounce" src={bigLogo} />
             <h1>Le Bijou</h1>
             <h2>
-              Tu mayorista de bisutería y complementos desde hace más de 10 años.
+            {window.i18nData.homePageSub}
           </h2>
           </div>
         </div>
@@ -23,41 +23,41 @@ export default class Home extends React.Component {
           <div className="valuesWrapper">
             <div className="container" >
             <div className="textBox left">
-                Agilidad
+            {window.i18nData.value01}
               </div>
               <div className="arrowPosition">
                 <div className="arrow-down left"></div>
               </div>
               <div className="information left">
                 <p>
-                  pharetra erat vel, pulvinar sapien. Cras tincidunt felis purus, eget scelerisque lectus interdum sit amet.
+                {window.i18nData.value01text}
                 </p>
               </div>
             </div>
             <div className="container" >
 
               <div className="textBox center">
-                Compromiso
+              {window.i18nData.value02}
               </div>
               <div className="arrowPosition">
                 <div className="arrow-down center"></div>
               </div>
               <div className="information center">
                 <p>
-                  pharetra erat vel, pulvinar sapien. Cras tincidunt felis purus, eget scelerisque lectus interdum sit amet.
+                {window.i18nData.value02text}
                 </p>
               </div>
             </div>
             <div className="container" >
               <div className="textBox right">
-                Personalidad
+              {window.i18nData.value03}
               </div>
               <div className="arrowPosition">
                 <div className="arrow-down right"></div>
               </div>
               <div className="information right">
                 <p>
-                  pharetra erat vel, pulvinar sapien. Cras tincidunt felis purus, eget scelerisque lectus interdum sit amet.
+                {window.i18nData.value03text}
                 </p>
               </div>
             </div>
