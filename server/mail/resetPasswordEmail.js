@@ -8,7 +8,7 @@ const resetPasswordEmail = (token) => {
   const resetLink = `localhost:3000/resetpassword/${token}`
 
     const smtpTrans = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
+      host: 'smtp',
       port: 465,
       secure: true,
       auth: {
@@ -29,7 +29,7 @@ const resetPasswordEmail = (token) => {
       template: 'resetPassword',
       message: {
         from: 'Le Bijou Password Reset',
-        to: 'xolsco@gmail.com',
+        to: 'email',
       },
       locals: {
         link: resetLink
