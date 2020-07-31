@@ -1,6 +1,5 @@
 import React from 'react';
 import '../services/localisationService.js';
-import bigLogo from "../rsc/Logo Big.png";
 import NewsCarousel from "../components/newsCarousel";
 
 export default class Home extends React.Component {
@@ -11,11 +10,10 @@ export default class Home extends React.Component {
       <div className="content" >
         <div className="app home">
           <div className="coverText">
-            <img   alt="bigLogo" className="bigLogo animate__animated animate__bounce" src={bigLogo} />
-            <h1>Le Bijou</h1>
             <h2>
             {window.i18nData.homePageSub}
           </h2>
+          <hr></hr>
           </div>
         </div>
            <NewsCarousel /> 

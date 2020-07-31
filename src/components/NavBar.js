@@ -8,7 +8,7 @@ export default function NavBar (props){
 
   let location = useLocation();
 
-  console.log(location);
+  
 
     return (
 
